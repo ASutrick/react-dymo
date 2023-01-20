@@ -117,17 +117,18 @@ export function getDymoPrintersFromXml(xml, modelPrinter) {
 /**
  * Print dymo labels
  *
- * @param {string} printerName - The Dymo Printer to print on
+ * @param {string} PrinterName - The Dymo Printer to print on
  * @param {string} labelXml - Label XML parsed to string
+ * @param {string} PrintParamsXml - Label XML parsed to string
  * @param {string} labelSetXml - LabelSet to print. LabelSet is used to print multiple labels with same layout but different data, e.g. multiple addresses.
  * @returns AxiosResponse
  */
-export function printLabel(printerName, labelXml, labelSetXml) {
+export function printLabel(printerName, labelXml, printParamsXml, labelSetXml) {
   return dymoRequestBuilder({
     method: "POST",
     wsAction: "printLabel",
     axiosOtherParams: {
-      data: `printerName=${encodeURIComponent(printerName)}&printParamsXml=&labelXml=${encodeURIComponent(
+      data: `printerName=${encodeURIComponent(printerName)}&printParamsXml=${encodeURIComponent(printParamsXml)}&labelXml=${encodeURIComponent(
         labelXml
       )}&labelSetXml=${labelSetXml || ""}`,
     },
