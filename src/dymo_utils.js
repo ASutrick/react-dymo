@@ -1,5 +1,4 @@
 import axios from "axios";
-import XMLParser from "react-xml-parser";
 
 import {
   WS_PROTOCOL,
@@ -101,16 +100,6 @@ export function dymoUrlBuilder(wsProtocol, wsHost, wsPort, wsPath, wsAction) {
 //   }
 //
 export function getDymoPrintersFromXml(xml, modelPrinter) {
-  const xmlParse = new XMLParser().parseFromString(xml);
-  const labelWritersPrinters = xmlParse.getElementsByTagName(modelPrinter);
-  var printers = [];
-  labelWritersPrinters.map((printer) => {
-    const printerDetails = {};
-    printer.children.map((item) => {
-      printerDetails[item.name.charAt(0).toLowerCase() + item.name.slice(1)] = item.value;
-    });
-    printers.push(printerDetails);
-  });
   return printers;
 }
 
@@ -128,9 +117,9 @@ export function printLabel(printerName, labelXml, printParamsXml, labelSetXml) {
     method: "POST",
     wsAction: "printLabel",
     axiosOtherParams: {
-      data: `printerName=${encodeURIComponent(printerName)}&printParamsXml=${encodeURIComponent(printParamsXml)}&labelXml=${encodeURIComponent(
-        labelXml
-      )}&labelSetXml=${labelSetXml || ""}`,
+      data: `printerName=${encodeURIComponent(printerName)}&printParamsXml=${encodeURIComponent(
+        printParamsXml
+      )}&labelXml=${encodeURIComponent(labelXml)}&labelSetXml=${labelSetXml || ""}`,
     },
   });
 }
