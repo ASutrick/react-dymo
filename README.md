@@ -1,6 +1,7 @@
 # react-dymo
 
 > Collections of javascript and react utilities to handle the Dymo LabelWriter web service.
+> **Now updated for React 18**
 
 [![NPM](https://img.shields.io/npm/v/react-dymo-hooks.svg)](https://www.npmjs.com/package/react-dymo-hooks) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
